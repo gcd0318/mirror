@@ -23,6 +23,9 @@ def get_data(config, infoname, **kwargs):
     j = None
     if 200 == resp.status_code:
         j = json.loads(resp.text)
+        print(j)
+        if conf['ok_code'] != j['code']:
+            j = None
     return j
 
 def chain_get(conffile):
@@ -33,6 +36,7 @@ def chain_get(conffile):
     while (i < len(config)) and (j is None):
         sect = sections[i]
         j = get_data(config, sect)
+        i = i + 1
     return config[sections[i]], j
 
 if '__main__' == __name__:
