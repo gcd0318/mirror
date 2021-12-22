@@ -33,7 +33,7 @@ def chain_get(conffile):
     while (i < len(config)) and (j is None):
         sect = sections[i]
         j = get_data(config, sect)
-    return sections[i], j
+    return config[sections[i]], j
 
 if '__main__' == __name__:
     conffile = 'mirror.conf'
