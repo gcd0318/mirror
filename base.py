@@ -36,7 +36,7 @@ def chain_get(conffile):
     return config[sections[i]], j
 
 if '__main__' == __name__:
-    conffile = 'mirror.conf'
+    conffile = 'conf/mirror.conf'
     conf = load_config(conffile)
     for sect in conf:
         if 'url' in conf[sect]:
