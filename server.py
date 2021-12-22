@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 from weather import get_weather
 
 app = Flask(__name__)
@@ -6,12 +6,15 @@ app.config['JSON_AS_ASCII'] = False
 
 @app.route('/')
 def index():
-    return 'mirror'
+    data = get_weather()
+    print(data)
+#    return render_template('weather.html', data=data)
+    return render_template('index.html', data=data)
 
 @app.route('/weather')
 def weather():
-    name, data = get_weather()
-    return jsonify({name: data})
+    data = get_weather()
+    return jsonify(data)
 
 
 if '__main__' == __name__:
