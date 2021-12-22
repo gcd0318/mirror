@@ -7,8 +7,6 @@ app.config['JSON_AS_ASCII'] = False
 @app.route('/')
 def index():
     data = get_weather()
-    print(data)
-#    return render_template('weather.html', data=data)
     return render_template('index.html', data=data)
 
 @app.route('/weather')
