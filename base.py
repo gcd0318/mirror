@@ -23,8 +23,7 @@ def get_data(config, infoname, **kwargs):
     j = None
     if 200 == resp.status_code:
         j = json.loads(resp.text)
-        print(j)
-        if conf.get('ok_code') != j.get('code'):
+        if conf.get('ok_code') != str(j.get('code')):
             j = None
     return j
 
@@ -42,7 +41,7 @@ def chain_get(conffile):
         conf = config[sect]
     else:
         conf = None
-    return conf, j
+    return sect, conf, j
 
 if '__main__' == __name__:
     conffile = 'conf/mirror.conf'
