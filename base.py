@@ -24,7 +24,7 @@ def get_data(config, infoname, **kwargs):
     if 200 == resp.status_code:
         j = json.loads(resp.text)
         print(j)
-        if conf['ok_code'] != j['code']:
+        if conf.get('ok_code') != j.get('code'):
             j = None
     return j
 
