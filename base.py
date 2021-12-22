@@ -2,10 +2,10 @@ import configparser
 import json
 import requests
 
-def load_config(conffile='mirror.conf'):
+def load_config(conffile):
     config = configparser.ConfigParser()
     config.read(conffile)
-    sections = config.sections()
+#    sections = config.sections()
     for sect in config:
         section = config[sect]
     return config
@@ -25,13 +25,19 @@ def get_data(config, infoname, **kwargs):
         j = json.loads(resp.text)
     return j
 
+def chain_get(conffile):
+    config = load_config(conffile)
+    sections = config.sections()
+    j = None
+    i = 0
+    while (i < len(config)) and (j is None):
+        sect = sections[i]
+        j = get_data(config, sect)
+    return sections[i], j
+
 if '__main__' == __name__:
-    conf = load_config()
+    conffile = 'mirror.conf'
+    conf = load_config(conffile)
     for sect in conf:
         if 'url' in conf[sect]:
             print(sect, get_data(conf, sect))
-#    air = get_data(conf, 'air')
-#    print(air)
-
-#    weather = get_data(conf, 'weather')
-#    print(weather)
