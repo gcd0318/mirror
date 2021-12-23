@@ -3,9 +3,9 @@ thanks to {{ data['vendor'] }} for following data
 {% set i = 0 %}
 {% for weather in data['data'] %}
 <hr>
-天气：{{ weather['weather'] }}<br>
-气温：{{ weather['temperature'] }}<br>
-风向：{{ weather['wind_dir'] }}<br>
-风力：{{ weather['wind_power'] }}<br>
+{{ weather['weather'] }} |
+{{ weather['temperature'] }} °C |
+{{ weather['wind_dir'] }} |
+{{ weather['wind_power'] }}
 {% endfor %}
 
