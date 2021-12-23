@@ -2,6 +2,7 @@ thanks to {{ data['vendor'] }} for following data
 <br>
 {% set i = 0 %}
 {% for weather in data['data'] %}
+<hr>
 天气：{{ weather['weather'] }}<br>
 气温：{{ weather['temperature'] }}<br>
 风向：{{ weather['wind_dir'] }}<br>
