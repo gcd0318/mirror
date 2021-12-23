@@ -33,11 +33,11 @@ def chain_get(conffile):
     j = None
     i = 0
     sect = None
-    while (i < len(config)) and (j is None):
+    while (i < len(sections)) and (j is None):
         sect = sections[i]
         j = get_data(config, sect)
         i = i + 1
-    if i < len(config):
+    if i < len(sections):
         conf = config[sect]
     else:
         conf = None
