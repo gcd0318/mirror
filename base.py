@@ -1,6 +1,18 @@
 import configparser
+import logging
 import json
 import requests
+
+def log(logname):
+    logger = logging.getLogger(logname)
+    if not logname.endswith('.log'):
+        logname = '/var/log/mirror/' + logname + '.log'
+    fh = logging.handlers.TimedRotatingFileHandler(logname, "D", 1, 10)
+    fh.setFormatter(logging.Formatter('%(asctime)s %(filename)s_%(lineno)d: [%(levelname)s] %(message)s', '%Y-%m-%d %H:%M:%S'))
+    logger.addHandler(fh)
+    f = logging.Filter()
+    logger.setLevel(logging.DEBUG)
+    return logger
 
 def load_config(conffile):
     config = configparser.ConfigParser()
