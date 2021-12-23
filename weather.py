@@ -16,24 +16,46 @@ def get_weather(conffile='conf/weather.conf'):
             weather = seniverse(data)
     return {'vendor': name, 'data': weather}
 
+def merge(k1, k2):
+    res = k1
+    if k1 != k2:
+        res = res + ' - ' + k2
+    return res
+
+
 def yytianqi(data):
-    def merge(k1, k2):
-        res = k1
-        if k1 != k2:
-            res = res + ' - ' + k2
-        return res
     def parse(day):
         tq = merge(day['tq1'], day['tq2'])
         fl = merge(day['fl1'], day['fl2'])
         fx = merge(day['fx1'], day['fx2'])
-        qw = merge(day['qw1'], day['qw2'])
-        return {'weather': tq, 'wind_power': fl, 'wind_dir': fx, 'temperature': qw}
+        qw = merge(day['qw2'], day['qw1'])
+        date = day['date']
+        return {
+                'weather': tq,
+                'wind_power': fl,
+                'wind_dir': fx,
+                'temperature': qw,
+                'date': date
+                }
     res = [parse(day) for day in data['data']['list']]
     return res
 
 def qweather(data):
-
-    return data
+    def parse(day):
+        date = day['fxDate']
+        temp = merge(day['tempMin'], day['tempMax'])
+        wind_dir = merge(day['windDirDay'], day['windDirNight'])
+        wind_power = merge(day['windScaleDay'], day['windScaleNight'])
+        weather = merge(day['textDay'], day['textNight'])
+        return {
+                'date': date,
+                'temperature': temp,
+                'wind_dir': wind_dir,
+                'wind_power': wind_power,
+                'weather': weather,
+                }
+    res = [parse(day) for day in data['daily']]
+    return res
 
 def seniverse(data):
     return 2
