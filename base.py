@@ -39,12 +39,18 @@ def get_data(config, infoname, **kwargs):
             j = None
     return j
 
-def chain_get(conffile, i=0):
+def chain_get(conffile, index=-1):
     config = load_config(conffile)
     sections = config.sections()
+    i = 0
+    m = len(sections)
+    if (-1 < index) and (index < m):
+        i = index
+        m = index + 1
     j = None
     sect = None
-    while (i < len(sections)) and (j is None):
+    print(i, m)
+    while (i < m) and (j is None):
         sect = sections[i]
         j = get_data(config, sect)
         i = i + 1
