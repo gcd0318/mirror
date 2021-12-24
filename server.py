@@ -9,7 +9,7 @@ app.config['JSON_AS_ASCII'] = False
 @app.route('/')
 def index():
     data = get_weather('/etc/mirror/weather.conf')
-    return render_template('index.html', data=data)
+    return render_template('main.html', data=data)
 
 @app.route('/weather')
 def weather():

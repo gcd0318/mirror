@@ -1,8 +1,8 @@
 {% if 0 == stop %}
-<meta http-equiv="refresh" content="2;url={{ weather.html }}">
+<meta http-equiv="refresh" content="2; url={{ weather.html }}">
 {% endif %}
 
-thanks to {{ data['vendor'] }} for following data
+以下数据由{{ data['vendor'] }}提供
 <br>
 {% for weather in data['data'] %}
 <hr>
