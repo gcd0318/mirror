@@ -6,7 +6,7 @@ thanks to {{ data['vendor'] }} for following data
 <br>
 {% for weather in data['data'] %}
 <hr>
-day {{ data['data'].index(weather) }}:
+{{ weather['date'] }}:
 {{ weather['weather'] }} |
 {{ weather['temperature'] }} °C |
 {{ weather['wind_dir'] }} |
