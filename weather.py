@@ -1,6 +1,6 @@
 from base import chain_get
 
-def get_weather(conffile='conf/weather.conf', i=0):
+def get_weather(conffile='conf/weather.conf', i=-1):
     sect, conf, data = chain_get(conffile, i)
     name = None
     if conf is not None:
@@ -24,6 +24,7 @@ def merge(k1, k2, conn=' - '):
 
 
 def yytianqi(data):
+    print(data)
     def parse(day):
         tq = merge(day['tq1'], day['tq2'])
         fl = merge(day['fl1'], day['fl2'])

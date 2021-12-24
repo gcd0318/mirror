@@ -49,7 +49,6 @@ def chain_get(conffile, index=-1):
         m = index + 1
     j = None
     sect = None
-    print(i, m)
     while (i < m) and (j is None):
         sect = sections[i]
         j = get_data(config, sect)
