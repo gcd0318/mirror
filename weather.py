@@ -1,6 +1,7 @@
 from base import chain_get
 
 def get_weather(conffile='conf/weather.conf', i=-1):
+    print(conffile)
     sect, conf, data = chain_get(conffile, i)
     name = None
     if conf is not None:
