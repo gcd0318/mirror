@@ -24,7 +24,6 @@ def merge(k1, k2, conn=' - '):
 
 
 def yytianqi(data):
-    print(data)
     def parse(day):
         tq = merge(day['tq1'], day['tq2'])
         fl = merge(day['fl1'], day['fl2'])
