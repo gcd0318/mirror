@@ -4,9 +4,9 @@
 
 thanks to {{ data['vendor'] }} for following data
 <br>
-{% set i = 0 %}
 {% for weather in data['data'] %}
 <hr>
+day {{ data['data'].index(weather) }}:
 {{ weather['weather'] }} |
 {{ weather['temperature'] }} °C |
 {{ weather['wind_dir'] }} |
