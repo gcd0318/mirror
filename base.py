@@ -35,24 +35,22 @@ def get_data(config, infoname, **kwargs):
     j = None
     if 200 == resp.status_code:
         j = json.loads(resp.text)
-        if conf.get('ok_code') != str(j.get('code')):
+        if str(conf.get('ok_code')) != str(j.get('code')):
             j = None
     return j
 
-def chain_get(conffile):
+def chain_get(conffile, i=0):
     config = load_config(conffile)
     sections = config.sections()
     j = None
-    i = 0
     sect = None
     while (i < len(sections)) and (j is None):
         sect = sections[i]
         j = get_data(config, sect)
         i = i + 1
-    if i < len(sections):
+    conf = None
+    if j is not None:
         conf = config[sect]
-    else:
-        conf = None
     return sect, conf, j
 
 if '__main__' == __name__:

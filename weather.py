@@ -1,7 +1,7 @@
 from base import chain_get
 
-def get_weather(conffile='conf/weather.conf'):
-    sect, conf, data = chain_get(conffile)
+def get_weather(conffile='conf/weather.conf', i=0):
+    sect, conf, data = chain_get(conffile, i)
     name = None
     if conf is not None:
         name = conf.get('name')
@@ -16,10 +16,10 @@ def get_weather(conffile='conf/weather.conf'):
             weather = seniverse(data)
     return {'vendor': name, 'data': weather}
 
-def merge(k1, k2):
+def merge(k1, k2, conn=' - '):
     res = k1
     if k1 != k2:
-        res = res + ' - ' + k2
+        res = res + conn + k2
     return res
 
 
@@ -58,7 +58,22 @@ def qweather(data):
     return res
 
 def seniverse(data):
-    return 2
+    def parse(day):
+        date = day['date']
+        temp = merge(day['low'], day['high'])
+        wind_dir = merge(day['wind_direction'], day['wind_direction_degree'], ' ')
+        wind_power = merge(day['wind_scale'], day['wind_scale'], ' 米/秒，风力')
+        weather = merge(day['text_day'], day['text_night'])
+        return {
+                'date': date,
+                'temperature': temp,
+                'wind_dir': wind_dir,
+                'wind_power': wind_power,
+                'weather': weather,
+                }
+    print(data)
+    res = [parse(day) for day in data['results'][0]['daily']]
+    return res
 
 if '__main__' == __name__:
     print(get_weather('conf/weather.conf'))

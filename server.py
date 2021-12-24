@@ -16,6 +16,10 @@ def weather():
     data = get_weather('/etc/mirror/weather.conf')
     return jsonify(data)
 
+@app.route('/weather/<i>')
+def weather_i(i):
+    data = get_weather('/etc/mirror/weather.conf', int(i))
+    return jsonify(data)
 
 if '__main__' == __name__:
     app.run(host='0.0.0.0', port=8888, debug=True)
