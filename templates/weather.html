@@ -1,15 +1,10 @@
-{% if 0 == stop %}
-<meta http-equiv="refresh" content="2; url={{ weather.html }}">
-{% endif %}
-
-以下数据由{{ data['vendor'] }}提供
-<br>
-{% for weather in data['data'] %}
+以下数据由{{ weather['vendor'] }}提供
 <hr>
-{{ weather['date'] }}:
-{{ weather['weather'] }} |
-{{ weather['temperature'] }} °C |
-{{ weather['wind_dir'] }} |
-{{ weather['wind_power'] }}
+{% for w in weather['data'] %}
+{{ w['date'] }}:
+{{ w['weather'] }} |
+{{ w['temperature'] }} °C |
+{{ w['wind_dir'] }} |
+{{ w['wind_power'] }}
 {% endfor %}
 
