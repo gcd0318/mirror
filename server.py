@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, render_template
-from weather import get_weather
+from base import get_mirror
 from air import get_air
+from weather import get_weather
 
 import os
 
@@ -11,9 +12,10 @@ conf_root = '/etc/mirror/'
 
 @app.route('/')
 def index():
+    mirror = get_mirror(conf_root + 'mirror.conf')
     weather = get_weather(conf_root + 'weather.conf')
     air = get_air(conf_root + '/air.conf')
-    return render_template('main.html', weather=weather, air=air)
+    return render_template('main.html', mirror=mirror, weather=weather, air=air)
 
 @app.route('/weather')
 def weather():

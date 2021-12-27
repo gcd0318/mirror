@@ -22,6 +22,10 @@ def load_config(conffile):
         section = config[sect]
     return config
 
+def get_mirror(conffile):
+    conf = load_config(conffile)
+    return conf
+
 def get_data(config, infoname, **kwargs):
     conf = config[infoname]
     for k in kwargs:
