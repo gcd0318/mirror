@@ -30,5 +30,9 @@ def air():
     data = get_air(conf_root + 'air.conf')
     return jsonify(data)
 
+@app.route('/admin')
+def admin():
+    return render_template('admin.html')
+
 if '__main__' == __name__:
     app.run(host='0.0.0.0', port=8888, debug=True)
