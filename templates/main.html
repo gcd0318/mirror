@@ -7,7 +7,7 @@
 <script type="text/javascript">
 function getDate(){
 		var date = new Date();
-		var date1 = "上次更新：" + date.toLocaleString("zh-CN", {hour12: false});
+		var date1 = "上次更新：" + date.toLocaleString("zh-CN", {hour12: false}) + "<div style=\"float:right\"><a href='admin'>管理</a></div>";
                 var div1 = document.getElementById("times");
                 div1.innerHTML = date1;
             }
@@ -33,6 +33,4 @@ WIDGET = {
 {% include 'weather.html' %}
 <hr>
 {% include 'air.html' %}
-<hr>
-<a href='admin'>管理</a>
 </body>
